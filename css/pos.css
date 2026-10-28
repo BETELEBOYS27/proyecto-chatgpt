@@ -1,0 +1,536 @@
+/* COMERCIAL J&N — Venta y cobro, etapa 2. Se carga desde js/pos.js. */
+.pos-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  align-items: start;
+  gap: 22px;
+  padding-bottom: 30px;
+}
+.pos-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+.pos-scan {
+  width: 100%;
+  min-height: 64px;
+  font-size: 17px;
+  gap: 12px;
+}
+.pos-scan .icon {
+  width: 24px;
+  height: 24px;
+}
+.pos-hint {
+  color: #5d6d80;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 10px 0 14px;
+  overflow-wrap: anywhere;
+}
+.pos-wide {
+  width: 100%;
+}
+.pos-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+  border: 1px solid #dce4ed;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  background: #fcfdfe;
+  min-width: 0;
+}
+.pos-input:focus {
+  outline: 3px solid #1a5b9c33;
+  outline-offset: 1px;
+  border-color: var(--blue);
+  background: white;
+}
+.pos-product-list {
+  max-height: 55vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 8px -4px 14px;
+  padding: 0 4px;
+}
+.pos-product {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pos-product:last-child {
+  border: 0;
+}
+.pos-product-copy {
+  flex: 1;
+  min-width: 0;
+}
+.pos-product-copy strong,
+.pos-product-copy small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.pos-product-copy strong {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #294760;
+}
+.pos-product-copy small {
+  font-size: 11px;
+  color: #657487;
+  margin-top: 3px;
+}
+.pos-product-price {
+  font-size: 14px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pos-product-add {
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0;
+  flex-shrink: 0;
+  font-size: 24px;
+  line-height: 1;
+}
+.pos-basket {
+  position: sticky;
+  top: 20px;
+}
+.pos-basket-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pos-basket h2 {
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+.pos-basket-title .button {
+  min-height: 40px;
+  padding: 8px 10px;
+}
+.pos-empty-cart {
+  padding: 45px 12px;
+  text-align: center;
+  color: #657487;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.pos-cart {
+  margin: 8px 0 15px;
+}
+.pos-cart-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pos-cart-description {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+.pos-cart-description strong,
+.pos-cart-description small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.pos-cart-description strong {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.pos-cart-description small {
+  color: #657487;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.pos-line-total {
+  font-size: 14px;
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.pos-quantity {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dfe7f0;
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.pos-quantity button {
+  border: 0;
+  background: #f6f8fb;
+  color: var(--navy);
+  width: 36px;
+  height: 38px;
+  font-size: 20px;
+  padding: 0;
+}
+.pos-quantity button:disabled {
+  opacity: 0.4;
+}
+.pos-quantity span {
+  min-width: 30px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 4px;
+}
+.pos-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+}
+.pos-total span {
+  color: #5d6d80;
+  font-size: 14px;
+}
+.pos-total strong {
+  font-size: 25px;
+  color: var(--navy);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.pos-cart-footer .button {
+  min-height: 50px;
+  font-size: 15px;
+}
+.pos-notice {
+  margin: -5px 0 20px;
+  padding: 15px 18px;
+  background: #fff6df;
+  border: 1px solid #f1d597;
+  border-radius: 12px;
+  color: #725216;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.pos-catalog-actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.pos-dialog {
+  width: min(530px, calc(100% - 28px));
+  max-height: calc(100dvh - 32px);
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--ink);
+  box-shadow: 0 20px 90px #0d3b6633;
+  overscroll-behavior: contain;
+}
+.pos-dialog::backdrop {
+  background: #102d49a6;
+  backdrop-filter: blur(3px);
+}
+.pos-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+.pos-dialog-head h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 22px;
+  letter-spacing: -0.6px;
+}
+.pos-dialog-head .icon-button {
+  border: 1px solid var(--line);
+  font-size: 17px;
+}
+.pos-order-lines {
+  margin-bottom: 17px;
+}
+.pos-order-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.pos-order-line span {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.pos-order-line strong {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.pos-fields {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.pos-fields label {
+  display: block;
+  margin: 16px 0 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #294760;
+}
+.pos-fields label small {
+  font-size: 11px;
+  font-weight: 400;
+  margin-left: 6px;
+  color: #657487;
+}
+.pos-fields:disabled .pos-input {
+  color: #52657b;
+  background: #f1f4f8;
+  opacity: 1;
+}
+.pos-fields .pos-hint {
+  margin: 5px 0 10px;
+  font-size: 12px;
+}
+.pos-bills {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin: 11px 0;
+}
+.pos-bills button {
+  border: 1px solid #dce4ed;
+  border-radius: 8px;
+  color: var(--navy);
+  background: white;
+  padding: 8px 10px;
+  min-height: 38px;
+  font-size: 12px;
+  font-weight: 650;
+}
+.pos-bills button:hover {
+  background: #eef4fb;
+}
+.pos-change-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px;
+  border-radius: 10px;
+  background: #eef7f3;
+  color: #236447;
+  font-size: 14px;
+}
+.pos-change-row strong {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.pos-final-total {
+  margin: 8px 0 14px;
+  border-bottom: 1px solid var(--line);
+}
+.pos-error {
+  padding: 12px 14px;
+  border: 1px solid #efcfcb;
+  border-radius: 10px;
+  background: #fff2f0;
+  color: #92372d;
+  font-size: 13px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.pos-success-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 10px auto 15px;
+  background: #e9f6ef;
+  color: #28735b;
+  font-size: 32px;
+}
+#pos-receipt > .pos-hint,
+#pos-sale-number,
+#pos-sale-date {
+  text-align: center;
+}
+#pos-sale-number {
+  font-size: 20px;
+  color: var(--navy);
+  margin: 10px 0;
+}
+.pos-sale-summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 11px 20px;
+  font-size: 14px;
+  padding: 5px 0 20px;
+}
+.pos-sale-summary dt {
+  color: #5d6d80;
+}
+.pos-sale-summary dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.pos-code-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.pos-code-row .button {
+  min-height: 46px;
+}
+.pos-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+#pos-product-save {
+  margin-top: 22px;
+}
+@media (max-width: 1100px) {
+  .pos-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pos-basket {
+    position: static;
+  }
+  .pos-product-list {
+    max-height: 380px;
+  }
+}
+@media (max-width: 760px) {
+  /* Los avisos no deben tapar ni bloquear el botón para revisar la orden. */
+  body:has(#app-view:not([hidden]) #pos-view:not([hidden])) .toast {
+    bottom: calc(180px + env(safe-area-inset-bottom));
+    pointer-events: none;
+  }
+  #pos-view {
+    padding-bottom: 112px;
+  }
+  .pos-layout {
+    gap: 17px;
+  }
+  .pos-card {
+    padding: 17px;
+    border-radius: 15px;
+  }
+  .pos-input {
+    font-size: 16px;
+  }
+  .pos-scan {
+    min-height: 62px;
+    font-size: 17px;
+  }
+  .pos-product-list {
+    max-height: 340px;
+  }
+  .pos-product {
+    gap: 8px;
+    padding: 15px 0;
+  }
+  .pos-product-copy strong {
+    font-size: 14px;
+  }
+  .pos-product-copy small {
+    font-size: 11px;
+  }
+  .pos-product-price {
+    font-size: 13px;
+  }
+  .pos-product-add {
+    width: 37px;
+    height: 40px;
+  }
+  .pos-cart-line {
+    gap: 10px;
+  }
+  .pos-cart-description {
+    flex-basis: 120px;
+  }
+  .pos-cart-footer {
+    position: fixed;
+    bottom: calc(77px + env(safe-area-inset-bottom));
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -5px 20px #173b6209;
+    padding: 12px 18px;
+    z-index: 25;
+    display: grid;
+    grid-template-columns: minmax(85px, 0.8fr) minmax(0, 1.5fr);
+    align-items: center;
+    gap: 15px;
+  }
+  .pos-cart-footer .pos-total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+  }
+  .pos-cart-footer .pos-total span {
+    font-size: 11px;
+  }
+  .pos-cart-footer .pos-total strong {
+    font-size: 22px;
+  }
+  .pos-cart-footer .button {
+    min-height: 49px;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .pos-dialog {
+    padding: 20px;
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 17px;
+  }
+  .pos-dialog-head h2 {
+    font-size: 21px;
+  }
+  .pos-form-grid {
+    gap: 11px;
+  }
+  .pos-catalog-actions {
+    gap: 6px;
+  }
+  #pos-new-product {
+    font-size: 11px;
+  }
+}
+@media (max-width: 360px) {
+  .pos-product .product-picture {
+    display: none;
+  }
+  .pos-product-copy strong {
+    font-size: 13px;
+  }
+  .pos-cart-footer {
+    gap: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .pos-dialog {
+    padding: 16px;
+  }
+}
