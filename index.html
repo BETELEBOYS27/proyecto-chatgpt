@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d3b66">
+  <meta name="description" content="Sistema de ventas de Comercial J&N. De nuestra familia para la tuya.">
+  <meta name="referrer" content="no-referrer">
+  <title>Comercial J&N · Mi negocio</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir al contenido</a>
+
+  <!-- Íconos de la aplicación. -->
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="icon-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14m-6-6 6 6-6 6"></path>
+      </symbol>
+      <symbol id="icon-bag" viewBox="0 0 24 24">
+        <path d="M5 7h14l1 14H4L5 7Z"></path>
+        <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+      </symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+      </symbol>
+      <symbol id="icon-receipt" viewBox="0 0 24 24">
+        <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"></path>
+        <path d="M9 7h6M9 11h6M9 15h3"></path>
+      </symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24">
+        <path d="M4 3v17h17M8 15v-4m5 4V6m5 9V9"></path>
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5"></circle>
+        <path d="m16 16 4.5 4.5"></path>
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M20 7v5h-5M4 17v-5h5"></path>
+        <path d="M6 7a7 7 0 0 1 11.5-1L20 9M4 15l2.5 3A7 7 0 0 0 18 17"></path>
+      </symbol>
+      <symbol id="icon-chevron" viewBox="0 0 24 24">
+        <path d="m9 5 7 7-7 7"></path>
+      </symbol>
+      <symbol id="icon-logout" viewBox="0 0 24 24">
+        <path d="M9 4H4v16h5m5-13 5 5-5 5m-6-5h11"></path>
+      </symbol>
+      <symbol id="icon-lock" viewBox="0 0 24 24">
+        <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+        <path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"></path>
+      </symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6"></path>
+      </symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 11v6m0-10v.1"></path>
+      </symbol>
+      <symbol id="icon-box" viewBox="0 0 24 24">
+        <path d="m12 3 9 5v9l-9 5-9-5V8l9-5Zm0 10 9-5M3 8l9 5v9M7.5 5.5l9 5"></path>
+      </symbol>
+      <symbol id="icon-wifi" viewBox="0 0 24 24">
+        <path d="M3 8a15 15 0 0 1 18 0M6 12a10 10 0 0 1 12 0m-9 4a5 5 0 0 1 6 0m-3 4h.01"></path>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Acceso y cambio de contraseña. -->
+  <main id="auth-view" class="auth-layout">
+    <aside class="auth-story" aria-label="Comercial J&N">
+      <div class="story-top">
+        <span class="brand-wordmark">J<span>&</span>N<span class="brand-period">.</span></span>
+        <span class="story-label">COMERCIAL</span>
+      </div>
+      <div class="story-content">
+        <span class="eyebrow story-eyebrow">CERCA DE TI, CADA DÍA</span>
+        <h1>Tu negocio.<br>En buenas<br><em>manos.</em></h1>
+        <p>Todo empieza con una buena atención.<br>El resto, lo hacemos más sencillo.</p>
+        <div class="story-line"></div>
+        <span class="family-motto">De nuestra familia para la tuya.</span>
+      </div>
+      <div class="story-bottom">
+        <span>COMERCIAL J&N</span>
+        <span>CARABAYLLO, PERÚ</span>
+      </div>
+      <div class="story-orbit orbit-one" aria-hidden="true"></div>
+      <div class="story-orbit orbit-two" aria-hidden="true"></div>
+    </aside>
+
+    <div class="auth-main">
+      <div class="auth-topline">
+        <span class="small-wordmark">COMERCIAL J<span>&</span>N</span>
+        <span class="subtle-pill">
+          <svg class="icon"><use href="#icon-lock"></use></svg>
+          Acceso seguro
+        </span>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-brand" data-brand>
+          <img class="official-logo" src="assets/logo.png"
+               alt="Comercial J&N. De nuestra familia para la tuya." hidden>
+          <div class="brand-fallback">
+            <span class="fallback-overline">COMERCIAL</span>
+            <span class="fallback-name">J<span>&</span>N</span>
+            <span class="fallback-motto">De nuestra familia para la tuya</span>
+          </div>
+        </div>
+
+        <div id="login-panel">
+          <span class="eyebrow">MI NEGOCIO</span>
+          <h2>Qué bueno verte de nuevo</h2>
+          <p class="auth-intro">Ingresa para empezar tu día en Comercial J&N.</p>
+
+          <div id="configuration-notice" class="notice" hidden>
+            <svg class="icon"><use href="#icon-info"></use></svg>
+            <p>
+              La conexión está pendiente. Sigue la
+              <a href="docs/ETAPA-1.md">guía de instalación</a>
+              para conectar tu hoja de Google.
+            </p>
+          </div>
+
+          <form id="login-form">
+            <label for="username">Usuario</label>
+            <input id="username" name="username" type="text"
+                   autocomplete="username" autocapitalize="none"
+                   spellcheck="false" placeholder="Tu nombre de usuario"
+                   required maxlength="80">
+
+            <label for="password">Contraseña</label>
+            <div class="password-field">
+              <input id="password" name="password" type="password"
+                     autocomplete="current-password"
+                     placeholder="Escribe tu contraseña"
+                     required maxlength="128">
+              <button class="password-toggle" type="button"
+                      data-toggle="password" aria-label="Mostrar contraseña"
+                      aria-pressed="false">
+                <svg class="icon"><use href="#icon-eye"></use></svg>
+              </button>
+            </div>
+
+            <label class="checkbox-label" for="remember">
+              <input id="remember" name="remember" type="checkbox" checked>
+              <span>Recordar mi sesión en este dispositivo</span>
+            </label>
+
+            <p id="login-error" class="form-error" role="alert" hidden></p>
+
+            <button id="login-submit" class="button button-primary button-wide"
+                    type="submit">
+              <span>Ingresar a mi negocio</span>
+              <svg class="icon"><use href="#icon-arrow"></use></svg>
+            </button>
+          </form>
+
+          <p class="auth-help">
+            ¿Necesitas ayuda con tu acceso?<br>
+            Consulta con el administrador del negocio.
+          </p>
+        </div>
+
+        <div id="password-panel" hidden>
+          <span class="eyebrow">UN PASO PARA CUIDAR TU CUENTA</span>
+          <h2>Elige tu nueva contraseña</h2>
+          <p class="auth-intro">
+            Cambia la clave inicial antes de continuar.
+            Usa al menos 12 caracteres y evita una clave que uses en otra cuenta.
+          </p>
+
+          <form id="password-form">
+            <label for="current-password">Contraseña actual</label>
+            <div class="password-field">
+              <input id="current-password" type="password"
+                     autocomplete="current-password" required maxlength="128">
+              <button class="password-toggle" type="button"
+                      data-toggle="current-password"
+                      aria-label="Mostrar contraseña actual" aria-pressed="false">
+                <svg class="icon"><use href="#icon-eye"></use></svg>
+              </button>
+            </div>
+
+            <label for="new-password">Nueva contraseña</label>
+            <div class="password-field">
+              <input id="new-password" type="password"
+                     autocomplete="new-password" minlength="12" maxlength="128"
+                     required aria-describedby="password-hint">
+              <button class="password-toggle" type="button"
+                      data-toggle="new-password"
+                      aria-label="Mostrar nueva contraseña" aria-pressed="false">
+                <svg class="icon"><use href="#icon-eye"></use></svg>
+              </button>
+            </div>
+
+            <p id="password-hint" class="field-hint">
+              Mínimo 12 caracteres. Puedes usar una frase fácil de recordar.
+            </p>
+
+            <label for="confirm-password">Repite la nueva contraseña</label>
+            <input id="confirm-password" type="password"
+                   autocomplete="new-password" minlength="12" maxlength="128"
+                   required>
+
+            <p id="password-error" class="form-error" role="alert" hidden></p>
+
+            <button id="password-submit"
+                    class="button button-primary button-wide" type="submit">
+              <span>Guardar y continuar</span>
+              <svg class="icon"><use href="#icon-arrow"></use></svg>
+            </button>
+            <button id="password-logout"
+                    class="button button-text button-wide" type="button">
+              Volver al inicio de sesión
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <footer class="auth-footer">
+        <span>RUC 10276754128</span>
+        <span>Hecho para nuestro día a día.</span>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Catálogo de productos. -->
+  <div id="app-view" class="app-layout" hidden>
+    <aside class="sidebar">
+      <a href="#productos" class="sidebar-brand"
+         aria-label="Comercial J&N, productos">
+        <span class="sidebar-monogram">J<span>&</span>N</span>
+        <span>COMERCIAL<br><strong>Mi negocio</strong></span>
+      </a>
+
+      <div class="sidebar-section-title">TU ESPACIO DE TRABAJO</div>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button class="nav-item" type="button" disabled
+                title="Disponible en la etapa 2">
+          <svg class="icon"><use href="#icon-bag"></use></svg>
+          <span>Vender</span><small>Pronto</small>
+        </button>
+        <button class="nav-item is-active" type="button" aria-current="page">
+          <svg class="icon"><use href="#icon-grid"></use></svg>
+          <span>Productos</span>
+        </button>
+        <button class="nav-item" type="button" disabled
+                title="Disponible en la etapa 3">
+          <svg class="icon"><use href="#icon-receipt"></use></svg>
+          <span>Ventas</span><small>Pronto</small>
+        </button>
+        <button class="nav-item accounts-nav" type="button" disabled
+                title="Disponible para Admin en la etapa 4">
+          <svg class="icon"><use href="#icon-chart"></use></svg>
+          <span>Cuentas</span><small>Pronto</small>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <svg class="icon"><use href="#icon-lock"></use></svg>
+          <p>Tu información,<br>en un solo lugar.</p>
+        </div>
+        <div class="sidebar-profile">
+          <span class="avatar user-initials"></span>
+          <span class="profile-copy">
+            <strong class="user-name"></strong>
+            <small class="user-role"></small>
+          </span>
+          <button class="icon-button logout-button" type="button"
+                  aria-label="Cerrar sesión" title="Cerrar sesión">
+            <svg class="icon"><use href="#icon-logout"></use></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="breadcrumb">
+          <span>Mi negocio</span>
+          <svg class="icon"><use href="#icon-chevron"></use></svg>
+          <strong>Productos</strong>
+        </div>
+        <div class="topbar-right">
+          <span class="date-label" id="today-label"></span>
+          <span class="topbar-divider"></span>
+          <span class="avatar avatar-small user-initials"></span>
+          <button class="icon-button mobile-logout logout-button"
+                  type="button" aria-label="Cerrar sesión">
+            <svg class="icon"><use href="#icon-logout"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <main id="main-content" class="main-content" tabindex="-1">
+        <div class="page-heading">
+          <div>
+            <div class="heading-kicker">
+              <span class="tiny-square"></span> TU CATÁLOGO, A LA MANO
+            </div>
+            <h1>Productos<span class="heading-dot">.</span></h1>
+            <p>Todo lo que ofreces, en un solo lugar.</p>
+          </div>
+          <button id="refresh-button" class="button button-secondary"
+                  type="button">
+            <svg class="icon"><use href="#icon-refresh"></use></svg>
+            <span>Actualizar</span>
+          </button>
+        </div>
+
+        <section class="catalog-overview" aria-label="Resumen del catálogo">
+          <div class="overview-main">
+            <span class="overview-icon">
+              <svg class="icon"><use href="#icon-box"></use></svg>
+            </span>
+            <div>
+              <span class="overview-label">En tu catálogo</span>
+              <strong>
+                <span id="product-count">—</span>
+                <small>productos</small>
+              </strong>
+            </div>
+          </div>
+          <div class="overview-secondary">
+            <span class="status-dot"></span>
+            <span id="sync-label">Conectando con tu negocio…</span>
+          </div>
+        </section>
+
+        <section class="catalog-panel" aria-label="Lista de productos">
+          <div class="catalog-toolbar">
+            <div class="search-field">
+              <svg class="icon"><use href="#icon-search"></use></svg>
+              <label class="sr-only" for="product-search">
+                Buscar por nombre o código
+              </label>
+              <input id="product-search" type="search"
+                     placeholder="Buscar por nombre o código…" autocomplete="off">
+              <span class="search-key" aria-hidden="true">/</span>
+            </div>
+            <div class="stock-filter">
+              <label for="stock-filter">Stock</label>
+              <select id="stock-filter">
+                <option value="all">Todos los productos</option>
+                <option value="available">Con stock</option>
+                <option value="low">Stock bajo (1–5)</option>
+                <option value="empty">Agotados</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="catalog-meta">
+            <span id="results-label" role="status" aria-live="polite">
+              Cargando catálogo…
+            </span>
+            <span class="read-only-label">
+              <svg class="icon"><use href="#icon-lock"></use></svg>
+              Solo consulta · Etapa 1
+            </span>
+          </div>
+
+          <div id="product-loading" class="product-loading"
+               role="status" aria-label="Cargando productos">
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+            <div class="skeleton-row"></div>
+          </div>
+
+          <div id="catalog-error" class="empty-state" hidden>
+            <span class="empty-icon">
+              <svg class="icon"><use href="#icon-wifi"></use></svg>
+            </span>
+            <h2>No pudimos cargar tu catálogo</h2>
+            <p id="catalog-error-message"></p>
+            <button id="retry-button" type="button"
+                    class="button button-secondary">
+              <svg class="icon"><use href="#icon-refresh"></use></svg>
+              Volver a intentar
+            </button>
+          </div>
+
+          <div id="catalog-empty" class="empty-state" hidden>
+            <span class="empty-icon">
+              <svg class="icon"><use href="#icon-box"></use></svg>
+            </span>
+            <h2 id="empty-title">Tu catálogo empieza aquí</h2>
+            <p id="empty-description">
+              Los productos de tu hoja de Google aparecerán en este espacio.
+            </p>
+            <button id="clear-filters" type="button"
+                    class="button button-secondary" hidden>
+              Limpiar búsqueda
+            </button>
+          </div>
+
+          <div id="product-table-wrap" class="product-table-wrap" hidden>
+            <table class="product-table">
+              <thead>
+                <tr>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Código</th>
+                  <th scope="col" class="price-cell">Precio de venta</th>
+                  <th scope="col" class="stock-cell">Stock</th>
+                </tr>
+              </thead>
+              <tbody id="product-list"></tbody>
+            </table>
+          </div>
+
+          <div class="catalog-footnote">
+            <svg class="icon"><use href="#icon-info"></use></svg>
+            <span>Los precios se muestran en soles peruanos (S/).</span>
+          </div>
+        </section>
+
+        <aside class="stage-note">
+          <span class="stage-note-icon">
+            <svg class="icon"><use href="#icon-check"></use></svg>
+          </span>
+          <div>
+            <strong>Estamos preparando tu nueva experiencia</strong>
+            <p>
+              Esta primera etapa permite ingresar y consultar productos.
+              Las ventas y el escáner llegarán en la siguiente etapa.
+            </p>
+          </div>
+          <span class="stage-tag">ETAPA 1</span>
+        </aside>
+
+        <footer class="workspace-footer">
+          <span>COMERCIAL J&N</span>
+          <span>De nuestra familia para la tuya.</span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+    <svg class="icon"><use href="#icon-info"></use></svg>
+    <span id="toast-message"></span>
+  </div>
+
+  <noscript>
+    <div class="noscript-notice">
+      Activa JavaScript en tu navegador para usar Comercial J&N.
+    </div>
+  </noscript>
+</body>
+</html>
