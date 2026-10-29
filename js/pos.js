@@ -9,6 +9,10 @@ export function createPos({
   reload,
   onAuthError,
   safeImageUrl,
+  onNewProduct,
+  onProductSubmit,
+  onReceipt,
+  onNavigate,
 }) {
   const $ = (id) => document.getElementById(id);
   const money = new Intl.NumberFormat("es-PE", {
@@ -119,7 +123,9 @@ export function createPos({
     "Tu punto de venta, a la mano";
   document.querySelector(".stage-note p").textContent =
     "Escanea, revisa tu orden y registra el cobro desde Vender.";
-  document.querySelector(".stage-tag").textContent = "ETAPA 2";
+  document.querySelector(".stage-tag").textContent = onNewProduct
+    ? "ETAPA 3"
+    : "ETAPA 2";
   document.querySelector(".read-only-label").lastChild.textContent =
     " Consulta de productos";
 
@@ -191,20 +197,22 @@ export function createPos({
     stopScanner();
     const selling = screen === "sell";
     view.hidden = !selling;
-    catalog.hidden = selling;
+    catalog.hidden = screen !== "products";
     sellButton.classList.toggle("is-active", selling);
-    productsButton.classList.toggle("is-active", !selling);
+    productsButton.classList.toggle("is-active", screen === "products");
     for (const [button, active] of [
       [sellButton, selling],
-      [productsButton, !selling],
+      [productsButton, screen === "products"],
     ]) {
       if (active) button.setAttribute("aria-current", "page");
       else button.removeAttribute("aria-current");
     }
-    document.querySelector(".breadcrumb strong").textContent = selling
-      ? "Vender"
-      : "Productos";
-    document.title = `Comercial J&N · ${selling ? "Vender" : "Productos"}`;
+    const title =
+      { sell: "Vender", products: "Productos", sales: "Ventas" }[screen] ||
+      "Productos";
+    document.querySelector(".breadcrumb strong").textContent = title;
+    document.title = `Comercial J&N · ${title}`;
+    onNavigate?.(screen);
     main.focus({ preventScroll: true });
   }
   function subtotal() {
@@ -504,6 +512,7 @@ export function createPos({
     for (const [name, value] of entries)
       summary.append(element("dt", "", name), element("dd", "", value));
     open($("pos-receipt"));
+    onReceipt?.(sale);
   }
   async function complete(event) {
     event.preventDefault();
@@ -652,6 +661,10 @@ export function createPos({
     );
   }
   function openProduct() {
+    if (onNewProduct) {
+      onNewProduct();
+      return;
+    }
     if (state.user?.role !== "Admin") return;
     error("pos-product-error");
     if (state.productPending) {
@@ -685,6 +698,10 @@ export function createPos({
     }
   }
   async function saveProduct(event) {
+    if (onProductSubmit) {
+      await onProductSubmit(event);
+      return;
+    }
     event.preventDefault();
     if (state.productBusy || state.user?.role !== "Admin" || !session()) return;
     error("pos-product-error");
@@ -840,6 +857,7 @@ export function createPos({
   });
 
   return {
+    navigate,
     start(user) {
       state.epoch += 1;
       state.user = user;
