@@ -4,7 +4,8 @@ import { createPos } from "./pos.js";
 import { createInventory } from "./products.js";
 import { createSales } from "./sales.js";
 import { createReceipt } from "./receipt.js";
-let inventory, sales, receipts;
+import { createAdministration } from "./admin.js";
+let inventory, sales, receipts, administration;
 
 // Solo se recuerda un token temporal. Ninguna contraseña se guarda en el navegador.
 const SESSION_KEY = "jn_session_v1";
@@ -133,6 +134,7 @@ function hidePasswords() {
 }
 
 function resetLocalSession({ preserveStored = false } = {}) {
+  administration?.reset();
   inventory?.reset();
   sales?.reset();
   receipts?.reset();
@@ -180,6 +182,7 @@ function showLogin() {
 }
 
 function showPasswordChange() {
+  administration?.reset();
   inventory?.reset();
   sales?.reset();
   receipts?.reset();
@@ -267,6 +270,7 @@ function showWorkspace() {
   }).format(new Date());
   document.title = "Comercial J&N · Productos";
   $("main-content").focus({ preventScroll: true });
+  administration.start(user);
   pos.start(user);
   inventory.start(user);
   sales.start(user);
@@ -722,7 +726,10 @@ const pos = createPos({
   onNewProduct: () => inventory.open(),
   onProductSubmit: (event) => inventory.save(event),
   onReceipt: (sale) => receipts.show(sale),
-  onNavigate: (screen) => sales?.navigate(screen),
+  onNavigate: (screen) => {
+    sales?.navigate(screen);
+    administration?.navigate(screen);
+  },
 });
 const managementStyles = document.createElement("link");
 managementStyles.rel = "stylesheet";
@@ -744,5 +751,13 @@ sales = createSales({
   onAuthError: handleSessionError,
   showReceipt: receipts.show,
   navigate: pos.navigate,
+});
+administration = createAdministration({
+  api,
+  toast,
+  getSession: () => state.session,
+  onAuthError: handleSessionError,
+  navigate: pos.navigate,
+  onChangePassword: showPasswordChange,
 });
 initialize();
