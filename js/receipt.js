@@ -47,7 +47,20 @@ function pdfLibrary() {
   });
   return libraryPromise;
 }
-const logoUrl = new URL("../assets/logo.png", import.meta.url).href;
+// Logo incorporado: no necesita descargar ni subir archivos de imagen.
+const logoUrl = "data:image/png;base64," + [
+  "iVBORw0KGgoAAAANSUhEUgAAAUAAAAFACAMAAAD6TlWYAAAANlBMVEX///8BNGUFOGiGdC/ZmgzypwLxpwMBM2QBOWwAOGrvpgPwpwHysQLyqQHyqwLhoQnx",
+  "pQIDNWS7oxZ+AAAAAXRSTlMAQObYZgAAFWlJREFUeNrtnYl6qyoQgIOtQmLNSd7/ZY+ssgwwuDRimfvd09Yoy58ZBgaE261JkyZNmjRp0qRJkyZNmjRp0qRJ",
+  "kyZNmjRp0qRJk6qFdOSLy3ff99/D8OniVCSEEMrYfZGv78f4Mz1njJ8uWgUys7sDwr7+vaafn7FvDFPS0Xtc2Nfj52dWxIYwJoTdM/L1/RrHaWpqCEken1DD",
+  "79eshj/9p0t7OiEUg08iHGeCY1NCRwgWH7fjuSmcpqaEluDVj+PjCsileRMtHar1k/Lvx5JGUEiB+X49fxxpZnwr4zf+/DSCnpQ0f3MX0OU3dwk/Xf5PyyZ+",
+  "M8E/roO4zrOx34DfXyfY4fEB7V8jWNR7fk1ThOD0/HRFKuB3f0xxgH80QFPgPgS/n58YwHH8iwSL+P2b4gD/JsES93u/f09ThuD0x6IzRc2f4pcyYi5/iWAZ",
+  "P96BTmqgQvh3CBbye45pesaMvz9dsV+SIvfBO4DjmAcoCP6JLnWZ+7iT2/NnwgGc/kRoocx8Z36322NCmLAgOE6PT9fvhPxmgj40S9Yhbkq3",
+  "GJe5D8NPWTHCE3O5LsFC92HxKyR40Q5hydybz+926y2CUZLinnG85rCusPnz+DkEU6p4WYKl/LoghR5lxTI4c71BSaH7APjNBFUbl6EoVPBiXepS98EImIwh",
+  "mFHB8WoES91HhJ+2Ys0wEeMfL9WlLm3+ovwEwXFyKMKumOvgeBWCpfxoKrFeAByTEULdmblInL/UfdB0coLgqAimutNCCesnWOo+qEQ",
+  "eyf5NIdMG+hqYd3O+Ah+OIKLGddMsJhGvLKHKRSI+BmaA8yAQlXH/Gt96JprzFjRVE+QnQUWsU",
+  "fUfj4MCXQTO8Wddro2NA6ahCQ7wzm2/zzR9pAksZ3MpMfu62arRZs2TLPiCPlq2gKpOFzQVeN6C6EKWv7y9cWJmOkZRSm3D8WmZ5ZP3mVQ==",
+].join("");
+
 let logoPromise;
 function monochromeLogo() {
   if (logoPromise) return logoPromise;
@@ -106,7 +119,6 @@ export async function buildReceiptPdf(sale, paper = 58) {
     doc = await lib.PDFDocument.create();
   const font = await doc.embedFont(lib.StandardFonts.Helvetica),
     bold = await doc.embedFont(lib.StandardFonts.HelveticaBold);
-  // Los tipos estándar de PDF cubren español; los símbolos ajenos se sustituyen.
   const clean = (text) =>
     Array.from(String(text ?? ""))
       .map((char) => {
@@ -256,6 +268,9 @@ export async function buildReceiptPdf(sale, paper = 58) {
   });
 }
 export function createReceipt({ toast }) {
+  document.querySelectorAll("[data-brand] img").forEach((img) => {
+    img.src = logoUrl;
+  });
   const $ = (id) => document.getElementById(id),
     dialog = $("pos-receipt");
   let sale = null,
@@ -295,13 +310,6 @@ export function createReceipt({ toast }) {
     logo.src = logoUrl;
     logo.alt = "Logo de COMERCIAL J&N";
     logo.className = "receipt-logo";
-    logo.addEventListener(
-      "error",
-      () => {
-        logo.hidden = true;
-      },
-      { once: true },
-    );
     ticket.append(
       logo,
       node("h2", BUSINESS.name),
