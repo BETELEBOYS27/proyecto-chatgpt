@@ -1,6 +1,10 @@
 import { api, isApiConfigured } from "./api.js";
 import { CONFIG } from "./config.js";
 import { createPos } from "./pos.js";
+import { createInventory } from "./products.js";
+import { createSales } from "./sales.js";
+import { createReceipt } from "./receipt.js";
+let inventory, sales, receipts;
 
 // Solo se recuerda un token temporal. Ninguna contraseña se guarda en el navegador.
 const SESSION_KEY = "jn_session_v1";
@@ -129,6 +133,9 @@ function hidePasswords() {
 }
 
 function resetLocalSession({ preserveStored = false } = {}) {
+  inventory?.reset();
+  sales?.reset();
+  receipts?.reset();
   pos.reset();
   state.generation += 1;
   state.session = null;
@@ -173,6 +180,9 @@ function showLogin() {
 }
 
 function showPasswordChange() {
+  inventory?.reset();
+  sales?.reset();
+  receipts?.reset();
   pos.reset();
   $("app-view").hidden = true;
   $("auth-view").hidden = false;
@@ -258,6 +268,8 @@ function showWorkspace() {
   document.title = "Comercial J&N · Productos";
   $("main-content").focus({ preventScroll: true });
   pos.start(user);
+  inventory.start(user);
+  sales.start(user);
 }
 
 function icon(name) {
@@ -345,6 +357,7 @@ function productRow(product) {
       : "Disponible";
   stock.append(badge);
   tr.append(identityCell, code, price, stock);
+  inventory?.decorateRow(tr, product);
   return tr;
 }
 
@@ -424,6 +437,7 @@ async function loadProducts() {
     );
     state.catalogReady = true;
     pos.setProducts(state.products);
+    inventory.setProducts(state.products);
     $("product-count").textContent = String(state.products.length);
     $("sync-label").textContent =
       `Actualizado a las ${new Intl.DateTimeFormat("es-PE", { hour: "2-digit", minute: "2-digit", timeZone: "America/Lima" }).format(new Date())}`;
@@ -705,5 +719,30 @@ const pos = createPos({
   reload: loadProducts,
   onAuthError: handleSessionError,
   safeImageUrl,
+  onNewProduct: () => inventory.open(),
+  onProductSubmit: (event) => inventory.save(event),
+  onReceipt: (sale) => receipts.show(sale),
+  onNavigate: (screen) => sales?.navigate(screen),
+});
+const managementStyles = document.createElement("link");
+managementStyles.rel = "stylesheet";
+managementStyles.href = new URL("../css/management.css", import.meta.url).href;
+document.head.append(managementStyles);
+receipts = createReceipt({ toast });
+inventory = createInventory({
+  api,
+  toast,
+  getSession: () => state.session,
+  reload: loadProducts,
+  onAuthError: handleSessionError,
+  safeImageUrl,
+});
+sales = createSales({
+  api,
+  toast,
+  getSession: () => state.session,
+  onAuthError: handleSessionError,
+  showReceipt: receipts.show,
+  navigate: pos.navigate,
 });
 initialize();
