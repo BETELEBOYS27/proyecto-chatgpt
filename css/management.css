@@ -1,0 +1,330 @@
+/* Etapa 3: catálogo, historial y comprobantes. */
+.inventory-photo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+.inventory-photo img {
+  width: 104px;
+  height: 104px;
+  object-fit: contain;
+  background: #f6f8fb;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.pos-photo-file {
+  font: inherit;
+  max-width: 100%;
+  font-size: 13px;
+  color: #52657b;
+}
+.pos-photo-file::file-selector-button {
+  border: 1px solid var(--line);
+  background: #f6f8fb;
+  padding: 12px;
+  border-radius: 9px;
+  color: var(--navy);
+  font: inherit;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.inventory-actions {
+  white-space: nowrap;
+  text-align: right;
+}
+.inventory-actions .button {
+  min-height: 40px;
+  padding: 8px;
+  font-size: 12px;
+}
+.inventory-actions .button:last-child {
+  color: #963d32;
+}
+.inventory-danger {
+  background: #a73f33;
+  color: white;
+  border: 1px solid #a73f33;
+  min-height: 48px;
+}
+.inventory-danger:hover {
+  background: #8c332a;
+}
+.sales-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+}
+.sales-filters > div {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+.sales-filters label {
+  display: block;
+  font-size: 12px;
+  color: #52657b;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.sales-filters .button {
+  min-height: 46px;
+}
+.sales-table-wrap {
+  overflow-x: auto;
+  margin: 15px -5px;
+}
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+.sales-table th {
+  background: #f6f8fb;
+  color: #52657b;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.sales-table th,
+.sales-table td {
+  padding: 14px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.sales-table td:first-child {
+  min-width: 130px;
+}
+.sales-table td:first-child strong,
+.sales-table td:first-child small {
+  display: block;
+}
+.sales-table td:first-child small {
+  margin-top: 5px;
+  color: #657487;
+}
+.sales-table td:nth-child(5) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.sales-table .button {
+  min-height: 40px;
+  padding: 9px 12px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.sales-pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.receipt-actions {
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+  padding-top: 18px;
+}
+.receipt-actions > label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 7px;
+  color: #52657b;
+}
+.receipt-actions > select {
+  width: 110px;
+}
+.receipt-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 13px;
+}
+.receipt-buttons button {
+  flex: 1;
+  min-width: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 13px;
+}
+.jn-ticket {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 3mm 2mm;
+  background: #fff;
+  color: #000;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.jn-ticket h2 {
+  color: #000;
+  font-size: 13px;
+  margin: 5px 0;
+  letter-spacing: 0;
+  text-align: center;
+}
+.jn-ticket h3 {
+  color: #000;
+  font-size: 11px;
+  margin: 7px 0;
+  text-align: center;
+}
+.jn-ticket p {
+  margin: 4px 0;
+  text-align: center;
+  font-size: 9px;
+}
+.jn-ticket hr {
+  border: 0;
+  border-top: 1px dashed #555;
+  margin: 9px 0;
+}
+.receipt-logo {
+  display: block;
+  max-width: 26mm;
+  max-height: 28mm;
+  object-fit: contain;
+  margin: 0 auto 6px;
+  filter: grayscale(1) contrast(1.8);
+}
+.receipt-details p {
+  text-align: left;
+}
+.jn-ticket table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 9px;
+}
+.jn-ticket th,
+.jn-ticket td {
+  padding: 4px 1px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.jn-ticket th:first-child,
+.jn-ticket td:first-child {
+  width: 12%;
+}
+.jn-ticket th:nth-child(2),
+.jn-ticket td:nth-child(2) {
+  width: 42%;
+}
+.jn-ticket th:nth-child(3),
+.jn-ticket td:nth-child(3),
+.jn-ticket th:nth-child(4),
+.jn-ticket td:nth-child(4) {
+  width: 23%;
+  text-align: right;
+}
+.receipt-totals {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px;
+  font-size: 10px;
+}
+.receipt-totals dt,
+.receipt-totals dd {
+  margin: 0;
+}
+.receipt-totals dd {
+  text-align: right;
+}
+.receipt-grand {
+  font-weight: 800;
+  font-size: 12px;
+}
+.jn-ticket .receipt-thanks {
+  font-weight: bold;
+  font-size: 12px;
+}
+#jn-print-root {
+  display: none;
+}
+@media (max-width: 760px) {
+  .pos-catalog-actions {
+    justify-content: flex-start;
+  }
+  .inventory-actions {
+    white-space: normal;
+    min-width: 76px;
+    padding: 8px !important;
+  }
+  .inventory-actions .button {
+    display: block;
+    width: 100%;
+  }
+  #catalog-view .catalog-panel {
+    overflow: visible;
+  }
+  #catalog-view #product-table-wrap {
+    overflow-x: auto;
+  }
+  .sales-filters {
+    gap: 10px;
+  }
+  .sales-filters #sales-seller-field {
+    flex-basis: 100%;
+  }
+  .sales-filters > .button {
+    width: 100%;
+  }
+  .sales-table {
+    font-size: 12px;
+  }
+  .sales-table th,
+  .sales-table td {
+    padding: 12px 8px;
+  }
+  .sales-pages .button {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .sales-pages span {
+    font-size: 11px;
+  }
+}
+@media print {
+  @page {
+    size: auto;
+    margin: 2mm;
+  }
+  body.jn-printing {
+    min-width: 0 !important;
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.jn-printing dialog,
+  body.jn-printing dialog::backdrop {
+    display: none !important;
+  }
+  body.jn-printing > *:not(#jn-print-root) {
+    display: none !important;
+  }
+  body.jn-printing #jn-print-root {
+    display: block !important;
+    width: var(--ticket-width);
+    margin: 0;
+    padding: 0;
+  }
+  #jn-print-root .jn-ticket {
+    width: 100% !important;
+    max-width: none;
+    margin: 0;
+    padding: 0 2mm;
+  }
+  #jn-print-root img {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  #jn-print-root table thead {
+    display: table-header-group;
+  }
+  #jn-print-root table tr {
+    break-inside: avoid;
+  }
+}
